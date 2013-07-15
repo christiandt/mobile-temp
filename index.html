@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title></title>
+  
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" href="css/images/touch_icon.png" />
+  <link rel="shortcut icon" href="css/images/favicon.png">
+  
+  <link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css">
+  
+  <!-- Extra Codiqa features -->
+  <link rel="stylesheet" href="css/codiqa.ext.css">
+  
+  <!-- jQuery and jQuery Mobile -->
+  <script src="js/jquery-1.9.1.min.js"></script>
+  <script src="js/jquery.mobile-1.3.1.min.js"></script>
+  <script src="js/xivelyjs-1.0.4.min.js"></script> 
+
+  <!-- Extra Codiqa features -->
+  <script src="js/codiqa.ext.js"></script>
+   
+
+  <script>
+  xively.setKey( "5cmcVIB7FafDCBtTOkx4uQnoBoj4nCe9pDdxxBaOpu6XMS5H" );
+
+  xively.datastream.get("1560886817", "temperature", function(data) {
+    document.getElementById('officeTempValue').innerHTML = data.current_value+"°C";
+    document.getElementById('officeTempValueSmall').innerHTML = data.current_value+"°C";
+    var date = new Date(data.at);
+    document.getElementById('officeTempDate').innerHTML = date.toString();
+    console.log(data);
+  });
+
+  xively.datastream.get("1560886817", "light", function(data) {
+    document.getElementById('officeLightValue').innerHTML = data.current_value+"%";
+    document.getElementById('officeLightValueSmall').innerHTML = data.current_value+"%";
+    var date = new Date(data.at);
+    document.getElementById('officeLightDate').innerHTML = date.toString();
+    console.log(data);
+  });
+
+  xively.datastream.get("469696721", "temperature", function(data) {
+    document.getElementById('waterTempValue').innerHTML = data.current_value+"°C";
+    document.getElementById('waterTempValueSmall').innerHTML = data.current_value+"°C";
+    var date = new Date(data.at);
+    document.getElementById('waterTempDate').innerHTML = date.toString();
+    console.log(data);
+  });
+
+
+  </script>
+
+</head>
+<body>
+<!-- Home -->
+<div data-role="page" id="page1">
+    <div data-theme="a" data-role="header">
+        <h3>
+            Comoyo
+        </h3>
+    </div>
+    <div data-role="content">
+        <ul data-role="listview" data-divider-theme="d" data-inset="false">
+            <li data-role="list-divider" role="heading">
+                Office
+            </li>
+            <li data-theme="c">
+                <a href="#OfficeTemp" data-transition="slide">
+                    Temperature
+                    <span class="ui-li-count">
+                        <div id="officeTempValueSmall"></div>
+                    </span>
+                </a>
+            </li>
+            <li data-theme="c">
+                <a href="#OfficeLight" data-transition="slide">
+                    Light
+                    <span class="ui-li-count">
+                        <div id="officeLightValueSmall"></div>
+                    </span>
+                </a>
+            </li>
+            <li data-role="list-divider" role="heading">
+                Water
+            </li>
+            <li data-theme="c">
+                <a href="#WaterTemp" data-transition="slide">
+                    Temperature
+                    <span class="ui-li-count">
+                        <div id="waterTempValueSmall"></div>
+                    </span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<div data-role="page" id="OfficeTemp">
+    <div data-theme="a" data-role="header">
+        <a data-role="button" data-direction="reverse" data-rel="back" data-transition="slide"
+        data-theme="a" href="#page1" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+            Back
+        </a>
+        <h3>
+            Office
+        </h3>
+    </div>
+    <div data-role="content">
+      <div style="width: 288px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8; text-align: center;">
+        <h1>
+            <div id="officeTempValue"></div>
+        </h1>
+        <h3>
+            <div id="officeTempDate"></div>
+        </h3>
+      </div>
+    </div>
+</div>
+<div data-role="page" id="OfficeLight">
+    <div data-theme="a" data-role="header">
+        <a data-role="button" data-direction="reverse" data-rel="back" data-transition="slide"
+        data-theme="a" href="#page1" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+            Back
+        </a>
+        <h3>
+            Office
+        </h3>
+    </div>
+    <div data-role="content">
+      <div style="width: 288px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8; text-align: center;">
+        <h1>
+            <div id="officeLightValue"></div>
+        </h1>
+        <h3>
+            <div id="officeLightDate"></div>
+        </h3>
+      </div>
+    </div>
+</div>
+<div data-role="page" id="WaterTemp">
+    <div data-theme="a" data-role="header">
+        <a data-role="button" data-direction="reverse" data-rel="back" data-transition="slide"
+        data-theme="a" href="#page1" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+            Back
+        </a>
+        <h3>
+            Water
+        </h3>
+    </div>
+    <div data-role="content">
+      <div style="width: 288px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8; text-align: center;">
+        <h1>
+          <div id="waterTempValue"></div>
+        </h1>
+        <h3>
+            <div id="waterTempDate"></div>
+        </h3>
+      </div>
+    </div>
+</div>
+</body>
+</html>
