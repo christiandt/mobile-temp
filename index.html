@@ -27,30 +27,32 @@
 
   <script>
   xively.setKey( "5cmcVIB7FafDCBtTOkx4uQnoBoj4nCe9pDdxxBaOpu6XMS5H" );
+  getStreams();
 
-  xively.datastream.get("1560886817", "temperature", function(data) {
-    document.getElementById('officeTempValue').innerHTML = data.current_value+"°C";
-    document.getElementById('officeTempValueSmall').innerHTML = data.current_value+"°C";
-    var date = new Date(data.at);
-    document.getElementById('officeTempDate').innerHTML = date.toString();
-    console.log(data);
-  });
 
-  xively.datastream.get("1560886817", "light", function(data) {
-    document.getElementById('officeLightValue').innerHTML = data.current_value+"%";
-    document.getElementById('officeLightValueSmall').innerHTML = data.current_value+"%";
-    var date = new Date(data.at);
-    document.getElementById('officeLightDate').innerHTML = date.toString();
-    console.log(data);
-  });
+  function getStreams(){
+    console.log("teter");
+    xively.datastream.get("1560886817", "temperature", function(data) {
+      document.getElementById('officeTempValue').innerHTML = data.current_value+"°C";
+      document.getElementById('officeTempValueSmall').innerHTML = data.current_value+"°C";
+      var date = new Date(data.at);
+      document.getElementById('officeTempDate').innerHTML = date.toString();
+    });
 
-  xively.datastream.get("469696721", "temperature", function(data) {
-    document.getElementById('waterTempValue').innerHTML = data.current_value+"°C";
-    document.getElementById('waterTempValueSmall').innerHTML = data.current_value+"°C";
-    var date = new Date(data.at);
-    document.getElementById('waterTempDate').innerHTML = date.toString();
-    console.log(data);
-  });
+    xively.datastream.get("1560886817", "light", function(data) {
+      document.getElementById('officeLightValue').innerHTML = data.current_value+"%";
+      document.getElementById('officeLightValueSmall').innerHTML = data.current_value+"%";
+      var date = new Date(data.at);
+      document.getElementById('officeLightDate').innerHTML = date.toString();
+    });
+
+    xively.datastream.get("469696721", "temperature", function(data) {
+      document.getElementById('waterTempValue').innerHTML = data.current_value+"°C";
+      document.getElementById('waterTempValueSmall').innerHTML = data.current_value+"°C";
+      var date = new Date(data.at);
+      document.getElementById('waterTempDate').innerHTML = date.toString();
+    });
+  }
 
 
   </script>
@@ -96,7 +98,10 @@
                     </span>
                 </a>
             </li>
-
+            <a data-role="button" data-transition="none" href="#" onclick="getStreams();" data-icon="refresh"
+        data-iconpos="left" id="refreshbtn">
+            Refresh
+        </a>
         </ul>
     </div>
 </div>
