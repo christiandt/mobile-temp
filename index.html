@@ -46,11 +46,18 @@
       document.getElementById('officeLightDate').innerHTML = date.toString();
     });
 
-    xively.datastream.get("469696721", "temperature", function(data) {
-      document.getElementById('waterTempValue').innerHTML = data.current_value+"°C";
-      document.getElementById('waterTempValueSmall').innerHTML = data.current_value+"°C";
+    xively.datastream.get("469696721", "water", function(data) {
+      document.getElementById('beachWaterTempValue').innerHTML = data.current_value+"°C";
+      document.getElementById('beachWaterTempValueSmall').innerHTML = data.current_value+"°C";
       var date = new Date(data.at);
-      document.getElementById('waterTempDate').innerHTML = date.toString();
+      document.getElementById('beachWaterTempDate').innerHTML = date.toString();
+    });
+
+    xively.datastream.get("469696721", "air", function(data) {
+      document.getElementById('beachAirTempValue').innerHTML = data.current_value+"°C";
+      document.getElementById('beachAirTempValueSmall').innerHTML = data.current_value+"°C";
+      var date = new Date(data.at);
+      document.getElementById('beachAirTempDate').innerHTML = date.toString();
     });
   }
 
@@ -88,13 +95,21 @@
                 </a>
             </li>
             <li data-role="list-divider" role="heading">
-                Water
+                Beach
             </li>
             <li data-theme="c">
-                <a href="#WaterTemp" data-transition="slide">
-                    Temperature
+                <a href="#beachWaterTemp" data-transition="slide">
+                    Water
                     <span class="ui-li-count">
-                        <div id="waterTempValueSmall"></div>
+                        <div id="beachWaterTempValueSmall"></div>
+                    </span>
+                </a>
+            </li>
+            <li data-theme="c">
+                <a href="#beachAirTemp" data-transition="slide">
+                    Air
+                    <span class="ui-li-count">
+                        <div id="beachAirTempValueSmall"></div>
                     </span>
                 </a>
             </li>
@@ -147,7 +162,7 @@
       </div>
     </div>
 </div>
-<div data-role="page" id="WaterTemp">
+<div data-role="page" id="beachWaterTemp">
     <div data-theme="a" data-role="header">
         <a data-role="button" data-direction="reverse" data-rel="back" data-transition="slide"
         data-theme="a" href="#page1" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
@@ -160,10 +175,31 @@
     <div data-role="content">
       <div style="width: 288px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8; text-align: center;">
         <h1>
-          <div id="waterTempValue"></div>
+          <div id="beachWaterTempValue"></div>
         </h1>
         <h3>
-            <div id="waterTempDate"></div>
+            <div id="beachWaterTempDate"></div>
+        </h3>
+      </div>
+    </div>
+</div>
+<div data-role="page" id="beachAirTemp">
+    <div data-theme="a" data-role="header">
+        <a data-role="button" data-direction="reverse" data-rel="back" data-transition="slide"
+        data-theme="a" href="#page1" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">
+            Back
+        </a>
+        <h3>
+            Air
+        </h3>
+    </div>
+    <div data-role="content">
+      <div style="width: 288px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8; text-align: center;">
+        <h1>
+          <div id="beachAirTempValue"></div>
+        </h1>
+        <h3>
+            <div id="beachAirTempDate"></div>
         </h3>
       </div>
     </div>
